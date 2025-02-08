@@ -1,1 +1,1 @@
-C:\Users\Haseeb\Desktop\Projects\Tutorial\RSA_Implementation\rsa\target\debug\rsa.exe: C:\Users\Haseeb\Desktop\Projects\Tutorial\RSA_Implementation\rsa\src\main.rs
+C:\Users\Haseeb\Desktop\Projects\Tutorial\RSA_Implementation\rsa\target\debug\rsa.exe: C:\Users\Haseeb\Desktop\Projects\Tutorial\RSA_Implementation\rsa\src\key_generation.rs C:\Users\Haseeb\Desktop\Projects\Tutorial\RSA_Implementation\rsa\src\main.rs

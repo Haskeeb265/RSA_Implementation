@@ -1,26 +1,12 @@
-use rand::Rng; //Generates random numbers. Imported Rng from rand crate
-use rand::thread_rng; //Initializes the random number generator for the current thread
-use num_prime::RandPrime; //Used to generate prime numbers and apply prime functions
+use num_primes::Generator;
 
-pub fn generating_first_prime() -> u64 { //When we want to return a single value
+pub fn two_prime_generator() -> (num_primes::BigUint, num_primes::BigUint) {
+    let prime1 = Generator::new_prime(64);
+    let mut prime2 = Generator::new_prime(64);
 
-    let mut rng = thread_rng();
-    rng.gen_prime(64) //We don't use semi-colons when we want to return a value.
-
-}
-
-
-pub fn generating_second_prime() -> (u64,u64) { //when we want to return multiple values
-
-    let p = generating_first_prime();
-    let mut q;
-
-    loop{ //Continuously perform the below 2 tasks until the condition is met
-        q = generating_first_prime(); //generate a prime value
-        if p != q{ //Check if the the prime value generated is not equal to p
-            break;
-        }
+    while prime1 == prime2 {
+        prime2 = Generator::new_prime(64);
     }
 
-    (p,q) //returning p and q
+    (prime1, prime2)
 }

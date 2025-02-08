@@ -5,4 +5,6 @@ edition = "2021"
 
 [dependencies]
 rand = "0.9.0"
-bigint = "4.4.3"
+uint = "0.8"
+num-primes = "0.3.0"   
+num-bigint = "0.4"    
