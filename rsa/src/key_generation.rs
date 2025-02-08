@@ -1,8 +1,16 @@
-use rand::prelude::*;
+use rand::Rng;
 
-let mut rng = rand::rng();
+pub fn prime_num_generator(){
+    let mut rng = rand::thread_rng();
+    let p: u64 = rng.gen();
+    let q: u64 = rng.gen();
 
-println!("Char: '{}'",rng.random::<char>());
-println!("alpha: '{}'", rng.sample(rand::distr::Alphanumeric) as char);let mut nums: Vec<i32> = (1..100).collect();
-nums.shuffle(&mut rng);
-let _ = nums.choose(&mut rng);
+    
+
+}
+
+pub fn computing_n(){
+
+
+
+}
