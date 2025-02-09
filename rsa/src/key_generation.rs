@@ -1,6 +1,7 @@
-use num_primes::Generator; //This library is used to generate random prime numbers.
-use num_bigint::BigUint; //This is to deal with large numbers
-use num_integer::Integer; //This is to implement modular arthematic
+use num_primes::Generator; // This library is used to generate random prime numbers.
+use num_bigint::{BigUint, BigInt, Sign, ToBigInt}; // This is to deal with large numbers.
+use num_integer::Integer; // This is to implement modular arithmetic.
+use num_traits::One; // This is to use the 'one' method for BigInt.
 
 pub fn two_prime_generator() -> (num_primes::BigUint, num_primes::BigUint) { //Specifying that the reurn value of this function are 2 values of type BigUint
 
@@ -21,11 +22,27 @@ pub fn calculating_n(p: BigUint, q: BigUint) -> BigUint{ //Taking p and q of typ
 }
 
 pub fn euler_totient(p:BigUint, q: BigUint) -> BigUint{
-   let et = (p - BigUint::from(1u64)) * (q - BigUint::from(1u64));
-   et //Stored euler's totient in variable "et"
+ (p - BigUint::from(1u64)) * (q - BigUint::from(1u64))
 }
 
-// Calculate the modular inverse of e modulo φ(n)
+
 pub fn private_key(e: BigUint, et: BigUint) -> BigUint {
-    e.modinv(&et).expect("Modular inverse does not exist!") //& sign is used for referencing.
+    let e_bigint = e.to_bigint().unwrap();
+    let et_bigint = et.to_bigint().unwrap();
+
+    let result = e_bigint.extended_gcd(&et_bigint);
+
+    // Check if GCD is 1
+    if result.gcd != BigInt::one() {
+        panic!("Modular inverse does not exist!");
+    }
+
+    let mut d = result.x;
+
+    // If d is negative, make it positive by adding et
+    if d.sign() == Sign::Minus {
+        d += &et_bigint;
+    }
+
+    d.to_biguint().expect("Conversion to BigUint failed")
 }
