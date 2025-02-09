@@ -27,22 +27,22 @@ pub fn euler_totient(p:BigUint, q: BigUint) -> BigUint{
 
 
 pub fn private_key(e: BigUint, et: BigUint) -> BigUint {
-    let e_bigint = e.to_bigint().unwrap();
-    let et_bigint = et.to_bigint().unwrap();
+    let e_bigint = e.to_bigint().unwrap(); //Converting BigUint to BigInt.
+    let et_bigint = et.to_bigint().unwrap(); 
 
-    let result = e_bigint.extended_gcd(&et_bigint);
+    let result = e_bigint.extended_gcd(&et_bigint); 
 
     // Check if GCD is 1
     if result.gcd != BigInt::one() {
         panic!("Modular inverse does not exist!");
     }
 
-    let mut d = result.x;
+    let mut d = result.x; //.x is the 2nd value we get fomr the extended gcd method.
 
     // If d is negative, make it positive by adding et
     if d.sign() == Sign::Minus {
         d += &et_bigint;
     }
-
+    
     d.to_biguint().expect("Conversion to BigUint failed")
 }
