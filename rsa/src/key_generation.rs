@@ -17,7 +17,8 @@ pub fn two_prime_generator() -> (num_primes::BigUint, num_primes::BigUint) { //S
 
 pub fn calculating_n(p: BigUint, q: BigUint) -> BigUint{ //Taking p and q of type BigUint as input parameters and returning a value of type BigUint
     
-    p*q //Product of p and q
+   p*q //Product of p and q
+ 
 
 }
 
