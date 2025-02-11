@@ -1,12 +1,8 @@
-use crate::encryption;
-use crate::key_generation;
+use num_bigint::BigUint;
+use std::string::FromUtf8Error;
 
-pub fn decryption(c: &BigUint, n: &BigUint , d: &BigUint) -> String {
-
-    let m = c.modpow(d, &n);
-
+pub fn decryption(c: &BigUint, n: &BigUint, d: &BigUint) -> Result<String, FromUtf8Error> {
+    let m = c.modpow(d, n);
     let message = m.to_bytes_be();
-    let message = String::from_utf8(message).unwrap();
-
-    message
+    String::from_utf8_lossy(message)
 }
