@@ -9,7 +9,7 @@ fn main() {
     let et = key_generation::euler_totient(p.clone(), q.clone());
     let e = BigUint::from(65537u64);
     let d = key_generation::private_key(e, et.clone());
-    let encrpyt = encryption::encryption("My name is Haseeb", &n);
+    let encrpyt = encryption::encryption("Hello World!", &n);
 
     match decryption::decryption(&encrpyt, &n, &d) {
         Ok(decrypt) => println!("Decrypted Message: {}", decrypt),
